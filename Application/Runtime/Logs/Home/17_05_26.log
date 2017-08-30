@@ -1,0 +1,15 @@
+[ 2017-05-26T13:25:48+08:00 ] ::1 /thinkphp_3.2.3_full/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005203s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.010683s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010884s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\Program Files\phpStudy\WWW\thinkphp_3.2.3_full\Application\Home\Controller\IndexController.class.php on line 10 and defined D:\Program Files\phpStudy\WWW\thinkphp_3.2.3_full\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\Program Files\phpStudy\WWW\thinkphp_3.2.3_full\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\Program Files\phpStudy\WWW\thinkphp_3.2.3_full\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\Program Files\phpStudy\WWW\thinkphp_3.2.3_full\ThinkPHP\Common\functions.php 第 339 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.011452s ]
+INFO: [ app_end ] --END-- [ RunTime:0.011560s ]
+

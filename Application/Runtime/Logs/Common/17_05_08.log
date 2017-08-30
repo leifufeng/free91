@@ -1,0 +1,12 @@
+[ 2017-05-08T08:50:03+08:00 ] ::1 /thinkphp_3.2.3_full/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000417s ]
+ERR: 无法加载模块:Index
+
+[ 2017-05-08T18:23:25+08:00 ] ::1 /thinkphp_3.2.3_full/index/index?i=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.022418s ]
+ERR: 无法加载模块:Index
+
