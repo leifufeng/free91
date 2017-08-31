@@ -7,10 +7,22 @@ class IndexController extends Controller {
     // }
     public function index($value='')
     {
+
+        $this->display();
     	// var_dump(I());
     	// $this->display();
-    	$Alllist02 = M('Alllist02');
-    	$has = $Alllist02->where('`id`=1')->find();
-    	var_dump($has);
+    	// $Alllist02 = M('Alllist02');
+    	// // $has = $Alllist02->where('`id`=1')->find();
+     //    $has = $Alllist02->where('`id`=1')->getField('h5');
+    	// var_dump($has);
+    }
+
+    public function getview($value='')
+    {
+        $id = I('id');
+        // var_dump($id);
+        $Alllist02 = M('Alllist02');
+        $has = $Alllist02->where('`id`='.$id)->getField('h5');
+        var_dump($has);
     }
 }
