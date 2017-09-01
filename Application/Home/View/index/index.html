@@ -371,12 +371,21 @@ function getdata() {
             .replace('view_key_v', data.view_key).replace('token_v', data.token);
         console.log(resultUrl);
 
+
+
+
+
         $.get(resultUrl).done(function(data, status, jqXHR) {
             console.log($(data).find("#progress-info").find('a').html());
+            setTimeout(function() {getdata()}, 60000);
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log("错误");
-            
+            setTimeout(function() {getdata()}, 20000);
         });
+
+
+
+
 
         
     }).fail(function(jqXHR, textStatus, errorThrown) {
@@ -400,7 +409,71 @@ function getdata() {
 }
 
 
-        
+function getdata() {
+
+    var viewkey,h5
+
+    $.get('http://localhost/91free/home/index/getview/?id=5').done(function(data, status, jqXHR) {
+        // console.log(data);
+        var url = 'http://91.91p14.space/view_video.php?viewkey='+data
+        viewkey = data
+
+       $.post('/video/extraction', {
+            url: url
+        }, 'json').done(function(data, status, jqXHR) {
+            //console.log(data);
+            var resultUrl = '/video/view_key_v/token_v'
+                .replace('view_key_v', data.view_key).replace('token_v', data.token);
+            // console.log(resultUrl);
+
+            $.get(resultUrl).done(function(data, status, jqXHR) {
+                // console.log($(data).find("#progress-info").find('a').html());
+
+                h5 = $(data).find("#progress-info").find('a').html()
+
+                $.get('http://localhost/91free/home/index/setview/?viewkey='+viewkey+'&h5='+h5).done(function(data, status, jqXHR) {
+                    // console.log($(data).find("#progress-info").find('a').html());
+                    console.log(JSON.stringify(data))
+
+                    // h5 = $(data).find("#progress-info").find('a').html()
+
+                    setTimeout(function() {getdata()}, 10000);
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("错误");
+                    setTimeout(function() {getdata()}, 10000);
+                });
+
+
+                // setTimeout(function() {getdata()}, 60000);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("错误");
+                // setTimeout(function() {getdata()}, 20000);
+            });
+
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            var errorHtml = '';
+            if (jqXHR.status == 400) {
+                $('#video-info-text').addClass('text-danger');
+                errorHtml = '请检查输入的URL是否正确';
+            } else if (jqXHR.status == 500) {
+                $('#video-info-text').addClass('text-warning');
+                errorHtml = '服务器异常，请稍后重试';
+            } else if (jqXHR.status == 404) {
+                $('#video-info-text').addClass('text-danger');
+                errorHtml = '未找到对应视频信息，可能该视频尚未收录或已被删除';
+                setTimeout(function() {getdata()}, 10000);
+            } else {
+                $('#video-info-text').addClass('text-danger');
+                errorHtml = '未知错误：' + jqXHR.status + ' ' + jqXHR.statusText;
+            }
+            $('#video-info-text').html(errorHtml).show();
+            showInfoPanel();
+        }); 
+
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("错误");
+    });
+}
         
         </script>
     </div>

@@ -19,10 +19,57 @@ class IndexController extends Controller {
 
     public function getview($value='')
     {
-        $id = I('id');
+        // $id = I('id');
         // var_dump($id);
         $Alllist02 = M('Alllist02');
-        $has = $Alllist02->where('`id`='.$id)->getField('h5');
-        var_dump($has);
+        // $has = $Alllist02->where('`id`='.$id)->getField('vid');
+        
+        // var_dump($has);
+        $has = $Alllist02->where("id>20000 and hasdata=0 and down=0")->getField('vid');
+        $data = array('down'=>1);
+        $oldh5 = $Alllist02->where("vid='".$has."'")->setField($data);
+
+        echo $has;
+    }
+    public function setview($value='')
+    {
+        $viewkey = I('viewkey');
+        $h5 = trim(I('h5'));
+        var_dump($h5);
+        $Alllist02 = M('Alllist02');
+        // $has = $Alllist02->where('`id`='.$id)->getField('vid');
+        
+        // var_dump($has);
+        // $has = $Alllist02->where("id>20000 and hasdata=0 and down=0")->getField('vid');
+        // echo $has;
+
+        $id = $Alllist02->where("vid='".$viewkey."'")->getField('id');
+        var_dump($id);
+
+        $data = array('h5'=>$h5,'down'=>1,'hasdata'=>1);
+        $oldh5 = $Alllist02->where("vid='".$viewkey."'")->setField($data);
+        var_dump($oldh5);
+    }
+
+
+    public function test($value='')
+    {
+        $viewkey = 'a964020bbb96da82037e';
+        // $h5 = I('h5');
+        // var_dump($h5);
+        $Alllist02 = M('Alllist02');
+        // $has = $Alllist02->where('`id`='.$id)->getField('vid');
+        
+        // var_dump($has);
+        // $has = $Alllist02->where("id>20000 and hasdata=0 and down=0")->getField('vid');
+        // echo $has;
+
+        $oldh5 = $Alllist02->where("vid='".$viewkey."'")->getField('vid');
+        var_dump($oldh5);
+    }
+
+    public function getvid($value='')
+    {
+        # code...
     }
 }
